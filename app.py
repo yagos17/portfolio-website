@@ -1,6 +1,6 @@
+import os
 from flask import Flask, render_template, redirect, request, flash
 from flask_mail import Mail, Message
-import os
 
 app = Flask(__name__)
 app.secret_key = 'sonacode'
@@ -17,33 +17,34 @@ mail_settings = {
 app.config.update(mail_settings)
 mail = Mail(app)
 
-
 class Contato:
     def __init__(self, nome, email, mensagem):
         self.nome = nome
         self.email = email
         self.mensagem = mensagem
 
-
 @app.route('/')
 def index():
     return render_template('index.html')
 
-
-@app.route('/send', methods=['GET', 'POST'])
+@app.route('/send', methods=['POST'])
 def send():
-    if request.method == 'POST':
+    try:
         formContato = Contato(
             request.form["nome"],
             request.form["email"],
             request.form["mensagem"]
         )
 
+        destinatarios = [
+            os.getenv("EMAIL_DESTINO"),
+            app.config.get("MAIL_USERNAME")
+        ]
+
         msg = Message(
             subject=f'{formContato.nome} te enviou uma mensagem no portfólio',
             sender=app.config.get("MAIL_USERNAME"),
-            recipients=['yago.sona@gmail.com',
-                        app.config.get("MAIL_USERNAME")],
+            recipients=destinatarios,
             body=f'''
 {formContato.nome} com o e-mail {formContato.email}, te enviou a seguinte mensagem:
 
@@ -52,9 +53,6 @@ def send():
         )
         mail.send(msg)
         flash('Mensagem enviada com sucesso!')
+    except Exception as e:
+        flash(f'Erro ao enviar a mensagem: {e}')
     return redirect('/')
-
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
-
