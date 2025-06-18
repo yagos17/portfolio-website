@@ -7,4 +7,5 @@ Este é meu portfólio pessoal desenvolvido com HTML, CSS, Bootstrap e Python. E
 - HTML5
 - CSS3
 - Bootstrap 5
-- Python (Flask ou scripts complementares, se for o caso)
+- Python (Flask)
+- JavaScript
