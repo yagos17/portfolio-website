@@ -344,6 +344,11 @@ i.menu-mobile {
     margin-bottom: -35px;
 }
 
+.bg-blue-gray {
+    background-color: #607d8b;
+    color: white; 
+}
+
 /* Animação */
 
 [data-anime] {
