@@ -1,9 +1,8 @@
-# 💼 Portfólio Pessoal - Yago Sona
+# 💼 Portfólio Pessoal
 
 Este é meu portfólio pessoal desenvolvido com HTML, CSS, Bootstrap, JavaScript e Python. Ele reúne meus principais projetos, experiências e formas de contato, com o objetivo de apresentar minhas habilidades na área de tecnologia e dados.
 
-## 🔧 Tecnologias Utilizadas
-
+## 🖥️ Tecnologias
 - HTML5
 - CSS3
 - Bootstrap 5
